@@ -13,7 +13,7 @@
 <h1>Applications Review</h1>
 {{else}}
 <h1>My Applications</h1>
-<a class="btn btn-outline-primary apply" href="/jobs">Apply Now</a>
+<a class="btn btn-primary apply" href="/jobs">Apply Now</a>
 {{/if}}
 
 {{#if applied}}
@@ -25,7 +25,6 @@
     <table class="table table-striped">
         <thead class="table-dark">
             <tr>
-                <th scope="col">#</th>
                 <th scope="col">Position</th>
                 <th scope="col">Full Name</th>
                 <th scope="col">Email</th>
@@ -41,7 +40,6 @@
         <tbody>
             {{#each applications}}
             <tr>
-                <th scope="row">{{id}}</th>
                 <td>{{position}}</td>
                 <td>{{fullname}}</td>
                 <td>{{email}}</td>

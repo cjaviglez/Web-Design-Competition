@@ -129,7 +129,7 @@ h1 {
 }
 
 .rowj {
-    width: 1100px;
+    
     margin-bottom: 400px;
 }
 
@@ -146,4 +146,12 @@ footer {
 footer h6 {
     font-size: 12px;
     margin-top: 6px;
+}
+
+#imgbl{
+    margin-right: 5px;
+}
+
+#imgbr{
+    margin-left: 5px;
 }

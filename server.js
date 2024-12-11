@@ -61,13 +61,7 @@ const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"))
-app.engine('handlebars', engine(/*{
-    helpers: {
-        getUser() {
-            return JSON.stringify(this.token) ?? null;
-        }
-    }
-})*/));
+app.engine('handlebars', engine());
 app.set('view engine', 'handlebars');
 app.set('views', './views');
 app.use(express.urlencoded({ extended: false }))
