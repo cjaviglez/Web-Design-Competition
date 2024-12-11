@@ -10,8 +10,6 @@ import path from 'path'
 
 const jwtSecret = "authsecret";
 
-//cambio bobo
-
 const upload = multer({
     dest: './uploads/', // upload directory
     limits: {

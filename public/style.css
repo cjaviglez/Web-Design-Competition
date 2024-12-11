@@ -4,6 +4,29 @@
     float: left;
 }
 
+#bannersw {
+    font-size: x-large;
+}
+
+#hero {
+    background: url(/photos/swphoto.jpg) no-repeat center;
+    width: 100%;
+    height: 500px;
+    border-radius: 50px;
+    margin-bottom: 20px;
+}
+
+.hero-text {
+    padding-top: 150px;
+    padding-left: 32px;
+    color: white;
+}
+
+.hero-text p {
+    font-size: 20px;
+}
+
+
 .stat .card {
     margin-top: 8px;
     border-radius: 20px;
@@ -11,29 +34,10 @@
     color: white;
 }
 
-#bannersw {
-    font-size: x-large;
-}
+
 
 .stat h6 {
     color: rgba(255, 255, 255, 0.767);
-}
-
-footer {
-    margin-top: 80px;
-    padding-top: 24px;
-    padding-bottom: 24px;
-    text-align: center;
-    display: flexbox;
-    background-color: rgb(70, 29, 68);
-    color: aliceblue;
-    bottom: 0%;
-
-}
-
-footer h6 {
-    font-size: 12px;
-    margin-top: 6px;
 }
 
 #loginform {
@@ -53,31 +57,17 @@ footer h6 {
     border-radius: 10px;
 }
 
+h1 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
+}
+
 .form-label {
     font-size: 20px;
 }
 
 .apply {
     margin-bottom: 10px;
-}
-
-#hero {
-    background: url(/photos/swphoto.jpg) no-repeat center;
-    width: 100%;
-    height: 500px;
-    border-radius: 50px;
-    margin-bottom: 20px;
-}
-
-
-.hero-text {
-    padding-top: 150px;
-    padding-left: 32px;
-    color: white;
-}
-
-.hero-text p {
-    font-size: 20px;
 }
 
 .authnav {
@@ -109,10 +99,7 @@ footer h6 {
     display: block;
 }
 
-h1 {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 30px;
-}
+
 
 #tableadmin {
     margin-top: 10px;
@@ -128,4 +115,29 @@ h1 {
 
 .active {
     font-size: 20px;
+}
+
+.rowj {
+    width: 1100px;
+    margin-bottom: 400px;
+}
+
+
+
+
+footer {
+    margin-top: 80px;
+    padding-top: 24px;
+    padding-bottom: 24px;
+    text-align: center;
+    display: flexbox;
+    background-color: rgb(70, 29, 68);
+    color: aliceblue;
+    bottom: 0%;
+
+}
+
+footer h6 {
+    font-size: 12px;
+    margin-top: 6px;
 }
