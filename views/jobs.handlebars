@@ -1,0 +1,32 @@
+{{#if token}}
+
+<div class="authnav">
+    <form action="/admin" method="get">
+        <button class="btn btn-primary btnj" type="submit">Edit</button>
+    </form>
+    <form action="/logout" method="post">
+        <button class="btn btn-primary btnj" type="submit">Log Out</button>
+    </form>
+</div>
+
+{{/if}}
+
+<h1 id="School">School Jobs</h1>
+
+<div class="row" style="margin-top: 20px-;">
+    {{#each jobs}}
+    <div class="col-sm-12 col-md-4 stat">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title"><b>#{{id}} {{position}}</b></h5>
+                <hr>
+                <p class="card-subtitle mb-2 ">{{description}}</p>
+                <h6 class="mb-2 ">{{salary}}</h6>
+                <div style="display: flex; justify-content: flex-end">
+                    <a id=" btnapply" class="btn btn-success btn-sm" href="/jobs/apply/{{id}}">Apply</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+</div>
