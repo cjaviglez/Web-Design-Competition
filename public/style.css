@@ -67,7 +67,13 @@
     color: aliceblue;
     margin-top: 90px;
     border-radius: 10px;
+
 }
+
+.reg {
+    margin-bottom: 200px;
+}
+
 
 h1 {
     font-family: Arial, Helvetica, sans-serif;
@@ -99,11 +105,15 @@ h1 {
 }
 
 .table {
-    margin-bottom: 300px;
+    margin-bottom: 500px;
 }
 
 #tableadmin {
     margin-top: 10px;
+}
+
+#tableapp {
+    margin-bottom: 400px;
 }
 
 .btnj {
@@ -131,8 +141,6 @@ footer {
     display: flexbox;
     background-color: rgb(70, 29, 68);
     color: aliceblue;
-    bottom: 0%;
-
 }
 
 footer h6 {
