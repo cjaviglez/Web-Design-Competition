@@ -32,8 +32,6 @@
                 {{#if isAdmin}}
                 <th scope="col">CV</th>
                 <th scope="col"></th>
-                <th scope="col"></th>
-                <th scope="col"></th>
                 {{/if }}
             </tr>
         </thead>
@@ -47,24 +45,19 @@
 
                 {{#if ../isAdmin}}
                 <td><a href="/admin/applications/{{id}}/cv" target="_blank">Download CV</a></td>
-                <td>
+                <td style="display: flex; justify-content: flex-end; gap: 8px;">
                     <form action="/admin/applications/approve" method="post">
                         <input type="hidden" name="id" value="{{id}}" />
-                        <button class="btn btn-outline-success btn-sm" type="submit">Approve</button>
+                        <button class="btn btn-success btn-sm" type="submit">Approve</button>
                     </form>
-                </td>
-                <td>
                     <form action="/admin/applications/deny" action="/delete" method="post">
                         <input type="hidden" name="id" value="{{id}}" />
-                        <button class="btn btn-outline-danger btn-sm" type="submit">Deny</button>
+                        <button class="btn btn-warning btn-sm" type="submit">Deny</button>
                     </form>
-                </td>
-                <td>
                     <form action="/admin/applications/delete" action="/delete" method="post">
                         <input type="hidden" name="id" value="{{id}}" />
-                        <button class="btn btn-outline-danger btn-sm" type="submit">Delete</button>
+                        <button class="btn btn-danger btn-sm" type="submit">Delete</button>
                     </form>
-
                 </td>
                 {{/if }}
             </tr>

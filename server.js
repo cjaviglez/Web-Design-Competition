@@ -13,7 +13,7 @@ const jwtSecret = "authsecret";
 const upload = multer({
     dest: './uploads/', // upload directory
     limits: {
-        fileSize: 4000000 // 1MB limit
+        fileSize: 8000000 // 8MB limit
     },
     fileFilter: (req, file, cb) => {
         if (file.mimetype === 'application/pdf') {
@@ -39,7 +39,8 @@ db.run(`
       id INTEGER PRIMARY KEY,
       position TEXT NOT NULL,
       description  TEXT NOT NULL,
-      salary TEXT NOT NULL
+      salary TEXT NOT NULL,
+      isApproved TEXT NOT NULL
     );
 `)
 db.run(`
@@ -57,6 +58,7 @@ db.run(`
 //db.run(`ALTER TABLE application DELETE status TEXT;`)
 //createAdmin()
 
+
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -69,14 +71,14 @@ app.use(cookieParser());
 
 
 function userMiddleware(req, res, next) {
-    const token = req.cookies.token;
+    const token = req.cookies.token; //REQUEST COOKIES
     if (!token) {
         res.redirect("/login");
         return;
     }
     jwt.verify(token, jwtSecret, (err, decoded) => {
         if (err || decoded.role !== 'user') {
-            res.redirect('/login');
+            res.redirect('/login'); //SEND USER TO LOGIN IF NOT DONE
             return;
         }
 
@@ -87,11 +89,11 @@ function userMiddleware(req, res, next) {
 function adminMiddleware(req, res, next) {
     const token = req.cookies.token;
     if (!token) {
-        res.redirect("/login");
+        res.redirect("/login");//SEND ADMIN TO LOGIN IF NOT DONE
         return;
     }
     jwt.verify(token, jwtSecret, (err, decoded) => {
-        if (err || decoded.role !== 'admin') {
+        if (err || decoded.role !== 'admin') { //VERIFY THE TOKEN
             res.redirect('/login');
             return;
         }
@@ -102,7 +104,7 @@ function adminMiddleware(req, res, next) {
 
 app.get("/", (req, res) => {
     const token = req.cookies.token;
-    res.render("home", { token })
+    res.render("home", { token })   //KEEPS GOING IF SIGNED IN
 })
 
 //JOBS LOGIC
@@ -120,7 +122,7 @@ app.get("/admin/new-job", adminMiddleware, (req, res) => {
 })
 app.post("/admin/new-job", adminMiddleware, (req, res) => {
     const body = req.body
-    db.run(`INSERT INTO job (position, description, salary) VALUES (?, ?, ?)`, [body.position, body.description, body.salary], (err => {
+    db.run(`INSERT INTO job (position, description, salary, isApproved) VALUES (?, ?, ?, ?)`, [body.position, body.description, body.salary, 'pending'], (err => {
         if (err) {
             res.render('new-job', { error: 'Error creating job' });
         } else {
@@ -138,7 +140,7 @@ app.post("/admin/delete-job", adminMiddleware, (req, res) => {
 //APPLY LOGIC
 app.get("/jobs", (req, res) => {
     const token = req.cookies.token
-    db.all(`SELECT * FROM job`, (err, rows) => {
+    db.all(`SELECT * FROM job WHERE isApproved = 'approved'`, (err, rows) => {
         res.render("jobs", { jobs: rows, token })
     })
 })
@@ -275,7 +277,7 @@ app.post("/logout", (req, res) => {
 //Admin
 async function createAdmin() {
     const fullname = "ADMIN";
-    const email = "admin@gmail.com";
+    const email = "cjaviglez123@gmail.com";
     const password = "Aa12345678*";
     const hashedPassword = await bcrypt.hash(password, 10);
     db.run(
@@ -290,7 +292,16 @@ async function createAdmin() {
         }
     );
 }
-
+//APPROVE JOBS
+app.post("/admin/job-approval", adminMiddleware, (req, res) => {
+    const id = req.body.id
+    db.run(`UPDATE job SET isApproved = 'approved' WHERE id = ?;`, [id], (err) => {
+        if (err) {
+            console.log(err)
+        }
+        res.redirect('/admin');
+    })
+})
 
 
 app.listen(3000)

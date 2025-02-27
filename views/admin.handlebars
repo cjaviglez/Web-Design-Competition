@@ -8,37 +8,43 @@
     </ul>
 </div>
 <div class="reg">
-<h1>Admin Panel</h1>
+    <h1>Admin Panel</h1>
 
-<a href="/admin/new-job" class="btn btn-primary mb-6 mt-6">Create job</a>
-<a href="/admin/applications" class="btn btn-primary mb-6 mt-6">Review applications</a>
-<div class="req">
-<table class="table table-striped" id="tableadmin">
-    <thead class="table-dark">
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Position</th>
-            <th scope="col">Description</th>
-            <th scope="col">Salary</th>
-            <th scope="col"></th>
-        </tr>
-    </thead>
-    <tbody>
-        {{#each jobs}}
-        <tr>
-            <th scope="row">{{id}}</th>
-            <td>{{position}}</td>
-            <td>{{description}}</td>
-            <td>{{salary}}</td>
-            <td>
-                <form action="/admin/delete-job" method="post">
-                    <input type="hidden" name="id" value="{{id}}" />
-                    <button class="btn btn-outline-danger btn-sm" type="submit">Delete</button>
-                </form>
-            </td>
-        </tr>
-        {{/each}}
-    </tbody>
-</table>
-</div>
+    <a href="/admin/new-job" class="btn btn-primary mb-6 mt-6">Create job</a>
+    <a href="/admin/applications" class="btn btn-primary mb-6 mt-6">Review applications</a>
+    <div class="req">
+        <table class="table table-striped" id="tableadmin">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Position</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Instructor</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+
+                {{#each jobs}}
+                <tr>
+                    <th scope="row">{{id}}</th>
+                    <td>{{position}}</td>
+                    <td>{{description}}</td>
+                    <td>{{salary}}</td>
+
+                    <td style="display: flex; justify-content: flex-end; gap: 8px;">
+                        <form action="/admin/job-approval" method="post">
+                            <input type="hidden" name="id" value="{{id}}" />
+                            <button class="btn btn-outline-success btn-sm" type="submit">Approve</button>
+                        </form>
+                        <form action="/admin/delete-job" method="post">
+                            <input type="hidden" name="id" value="{{id}}" />
+                            <button class="btn btn-outline-danger btn-sm" type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
 </div>
