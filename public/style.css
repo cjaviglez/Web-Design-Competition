@@ -155,3 +155,6 @@ footer h6 {
 #imgbr {
     margin-left: 5px;
 }
+.row{
+    max-height: 200px;
+}
